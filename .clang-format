@@ -1,0 +1,4 @@
+# Customize clang format.
+
+IndentWidth: 4
+Language: Cpp
