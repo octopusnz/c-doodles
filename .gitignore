@@ -1,6 +1,7 @@
 /.bundle/
 /.yardoc
 /_yardoc/
+/build/
 /coverage/
 /doc/
 /pkg/
@@ -13,4 +14,5 @@
 *.lock
 *.sublime-project
 *.sublime-workspace
+*.o
 *.out
