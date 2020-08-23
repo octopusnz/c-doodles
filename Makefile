@@ -1,26 +1,43 @@
-CC :=/usr/bin/gcc
-CFLAGS :=-O0 -g -march=native -pedantic -pipe -std=c18 -Wall -Wextra
-LFLAGS :=-lncurses
-OBJDIR :=build/
-OBJS :=$(OBJDIR)main
+# Compiler locations:
+#
+# Latest GCC: /usr/local/gcc-10.2.0/bin/gcc-10.2
+# Debian 10 default GCC: /usr/bin/gcc
+# Debian 10 default Clang: /usr/bin/clang
+
 SHELL :=/usr/bin/env bash
 .SHELLFLAGS :=-o errexit -o nounset -o pipefail -c
 
-# Can't make the objects without dir
-#$(OBJS): | $(OBJDIR)
+CC :=/usr/local/gcc-10.2.0/bin/gcc-10.2
 
-# Identify targets that are not real
-.PHONY: clean setup
+TARGET_EXEC := a.out
+BUILD_DIR := ./build
+SRC_DIRS := ./src
 
-# Clear out the suffixes and re-set
-.SUFFIXES:
-.SUFFIXES: .c .o
+SRCS := $(shell find $(SRC_DIRS) -name *.c)
+OBJS := $(SRCS:%=$(BUILD_DIR)/%.o)
+DEPS := $(OBJS:.o=.d)
 
-setup:
-	mkdir build/
+INC_DIRS := $(shell find $(SRC_DIRS) -type d)
+INC_FLAGS := $(addprefix -I,$(INC_DIRS))
 
-main: main.c
-	$(CC) $(CFLAGS) -o $(OBJDIR)$@ $< $(LFLAGS)
+CFLAGS ?= -O0 -g -fsanitize=address -march=native -pedantic -pipe -std=c17\
+					-Wall -Wextra
+CPPFLAGS ?= $(INC_FLAGS) -MMD -MP
+LDFLAGS ?= -fsanitize=address -lncurses
 
-clean :
-	rm $(OBJS)
+$(BUILD_DIR)/$(TARGET_EXEC): $(OBJS)
+	$(CC) $(OBJS) -o $@ $(LDFLAGS)
+
+# c source
+$(BUILD_DIR)/%.c.o: %.c
+	$(MKDIR_P) $(dir $@)
+	$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
+
+.PHONY: clean
+
+clean:
+	$(RM) -r $(BUILD_DIR)
+
+-include $(DEPS)
+
+MKDIR_P ?= mkdir -p

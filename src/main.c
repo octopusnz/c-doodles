@@ -1,5 +1,4 @@
 #include <stdio.h>
-
 #include <curses.h>
 
 int main(void) {
@@ -11,4 +10,5 @@ int main(void) {
     endwin();
 
     return 0;
+
 }

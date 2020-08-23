@@ -11,6 +11,7 @@
 .DS_Store
 .Trash
 .ruby-version
+*.d
 *.lock
 *.sublime-project
 *.sublime-workspace
