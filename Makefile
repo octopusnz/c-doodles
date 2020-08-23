@@ -4,7 +4,7 @@
 # Debian 10 default GCC: /usr/bin/gcc
 # Debian 10 default Clang: /usr/bin/clang
 
-SHELL :=/usr/bin/env bash
+SHELL :=/usr/bin/bash
 .SHELLFLAGS :=-o errexit -o nounset -o pipefail -c
 
 CC :=/usr/local/gcc-10.2.0/bin/gcc-10.2
