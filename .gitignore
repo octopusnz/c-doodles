@@ -13,7 +13,7 @@
 .ruby-version
 *.d
 *.lock
-*.sublime-project
-*.sublime-workspace
 *.o
 *.out
+*.sublime-project
+*.sublime-workspace
