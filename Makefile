@@ -1,13 +1,15 @@
 # Compiler locations:
 # Latest GCC: /usr/local/gcc-10.2.0/bin/gcc-10.2
+# Latest Clang: /usr/local/clang_10.0.1/bin/clang-10
 # Debian 10 default GCC: /usr/bin/gcc
 # Debian 10 default Clang: /usr/bin/clang
+# Debain 10 default CC (after many symlinks): /usr/bin/gcc
 
 SHELL := /usr/bin/bash
 .SHELLFLAGS := -o errexit -o nounset -o pipefail -c
 
 CC := /usr/local/gcc-10.2.0/bin/gcc-10.2
-VAL_CC := /usr/bin/clang
+VAL_CC := /usr/local/clang_10.0.1/bin/clang-10
 MKDIR_P ?= mkdir -p
 
 TARGET_EXEC := a.out
@@ -16,7 +18,7 @@ BUILD_DIR := ./build
 VAL_BUILD_DIR := ./build/val_build
 SRC_DIRS := ./src
 
-SRCS := $(shell find $(SRC_DIRS) -name *.c)
+SRCS := $(shell find $(SRC_DIRS) ! -name *89.c -name *.c)
 OBJS := $(SRCS:%=$(BUILD_DIR)/%.o)
 VAL_OBJS := $(SRCS:%=$(VAL_BUILD_DIR)/%.o)
 DEPS := $(OBJS:.o=.d)
@@ -31,7 +33,7 @@ CFLAGS ?= -O0 -g -fsanitize=address -march=native -pedantic -pipe -std=c18\
 CPPFLAGS ?= $(INC_FLAGS) -MMD -MP
 LDFLAGS ?= -fsanitize=address
 VAL_CFLAGS ?= -O0 -g -march=native -pedantic -pipe -std=c89 -Wall -Wextra\
-						  -Wshadow -Wstrict-prototypes
+              -Wshadow -Wstrict-prototypes
 VAL_LDFLAGS ?=
 
 .PHONY: all cdoodles clean valgrind
@@ -43,7 +45,6 @@ cdoodles: $(BUILD_DIR)/$(TARGET_EXEC)
 $(BUILD_DIR)/$(TARGET_EXEC): $(OBJS)
 	$(CC) $(OBJS) -o $@ $(LDFLAGS)
 
-# c source
 $(BUILD_DIR)/%.c.o: %.c
 	$(MKDIR_P) $(dir $@)
 	$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
