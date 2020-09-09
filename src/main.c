@@ -21,7 +21,7 @@ typedef struct stock
 
 void init_stock (groceries items[MAX_ITEMS], int items_length);
 int check_promo (char promo1[], char promo2[]);
-void get_stock (void);
+void get_stock (groceries *user_items, groceries *selected_items);
 
 /* Functions start here */
 
@@ -60,6 +60,15 @@ void init_stock (groceries items[MAX_ITEMS], int items_length) {
     int i=0;
     int promo_success=0;
 
+     groceries user_items[MAX_ITEMS] = {{ {0}, {0}, 0, 0 }};
+     groceries selected_items[MAX_ITEMS] = {{ {0}, {0}, 0, 0 }};
+
+    groceries *p_user_items;
+    groceries *p_selected_items;
+
+    p_user_items = &user_items[0];
+    p_selected_items = &selected_items[0];
+
     /* TO-DO: Calculate the length of longest string and use that for offset */
     printf("***************************************************************\n");
     printf("\n\tWelcome to the Mega Mart!\n");
@@ -84,8 +93,34 @@ void init_stock (groceries items[MAX_ITEMS], int items_length) {
     printf("And our promo result was:");
     printf ("%d\n", promo_success);
 
-    get_stock();
+   get_stock(p_user_items, p_selected_items);
 
+   printf("We back in init now\n");
+   printf("Lets try and print the array:\n");
+
+   int count=0;
+
+   for(i=0, count=1; i < MAX_ITEMS; i++, count++) {
+
+        printf("%-16d", count);
+        printf("%-16s", user_items[i].name);
+        printf("%-16.2f", user_items[i].price);
+        printf("%-16s", user_items[i].promo_code);
+        printf("%d", user_items[i].stock_level);
+        printf("\n");
+    }
+
+    int count2=0;
+
+   for(i=0, count2=1; i < 4; i++, count2++) {
+
+        printf("%-16d", count2);
+        printf("%-16s", selected_items[i].name);
+        printf("%-16.2f", selected_items[i].price);
+        printf("%-16s", selected_items[i].promo_code);
+        printf("%d", selected_items[i].stock_level);
+        printf("\n");
+    }
 }
 
 int check_promo (char promo1[], char promo2[]) {
@@ -98,16 +133,16 @@ int check_promo (char promo1[], char promo2[]) {
     }
 }
 
-void get_stock (void) {
+void get_stock (groceries *user_items, groceries *selected_items) {
 
-    groceries user_items[MAX_ITEMS] = {{ {0}, {0}, 0, 0 }};
-    groceries selected_items[MAX_ITEMS] = {{ {0}, {0}, 0, 0 }};
     int choice=0;
     int i=0;
     int user_items_length=0;
     int selected_items_length=0;
     int count=0;
     int selection=0;
+    int valid_input=0;
+    int error_counter=0;
 
     strcpy (user_items[0].name, "Chocolate");
     user_items[0].price = 3.99;
@@ -154,30 +189,52 @@ void get_stock (void) {
         printf("\n");
     }
 
+    printf("Your choice: ");
     scanf("%d", &choice);
 
-    switch(choice) {
-    case 0 : exit(0);
-    case 1 : printf("We've added %s to our selection!\n", user_items[0].name);
-             selection=0;
-             break;
-    case 2 : printf("We've added %s to our selection!\n", user_items[1].name);
-             selection=1;
-             break;
-    case 3 : printf("We've added %s to our selection!\n", user_items[2].name);
-             selection=2;
-             break;
-    case 4 : printf("We've added %s to our selection!\n", user_items[3].name);
-             selection=3;
-             break;
-    default : printf("Please enter 1, 2, 3 or 4. 0 will exit.\n");
-   }
+    do {
 
-   selected_items_length = MAX_ITEMS
+        switch(choice) {
+        case 0 : exit(0);
+        case 1 : printf("We've added %s to our selection!\n"\
+                        , user_items[0].name);
+                 selection=0;
+                 valid_input=1;
+                 break;
+        case 2 : printf("We've added %s to our selection!\n"\
+                        , user_items[1].name);
+                 selection=1;
+                 valid_input=1;
+                 break;
+        case 3 : printf("We've added %s to our selection!\n"\
+                        , user_items[2].name);
+                 selection=2;
+                 valid_input=1;
+                 break;
+        case 4 : printf("We've added %s to our selection!\n"\
+                        , user_items[3].name);
+                 selection=3;
+                 valid_input=1;
+                 break;
+        default : printf("Please enter 1, 2, 3 or 4. 0 will exit.\n");
+                  error_counter++;
+                  printf("Your choice: ");
+                  scanf("%d", &choice);
+        }
+    } while(valid_input == 0 && error_counter < 3);
+
+    if (error_counter >= 3) {
+
+        printf("We couldn't understand your input so we'll exit. Bye!\n");
+        exit(0);
+    }
+
+   selected_items_length = MAX_ITEMS;
 
    for(i=0; i < selected_items_length; i++) {
        selected_items[i] = user_items[selection];
    }
 
    printf("\nThis got updated: %s\n", selected_items[0].name);
+
 }

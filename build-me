@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+set -o errexit
+set -o nounset
+set -o pipefail
+
+/usr/local/clang_10.0.1/bin/scan-build -o ./build/scan-build/ make -j4
+
+exit 0
