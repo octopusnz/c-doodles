@@ -2,8 +2,6 @@
 	 Location: ./src/headers/
 */
 
-/* TO-DO: Figure out why setlocale isn't working. */
-
 /* Global definitions and constants live here */
 
 #define MAX_ITEMS 10
@@ -19,10 +17,19 @@ typedef struct stock
 
 } groceries;
 
+typedef struct cart
+{
+
+	groceries basket[MAX_ITEMS];
+	int store_promo_status;
+	float total_price;
+
+} checkout;
+
 /* Function prototypes live here */
 
-void findlong_string (groceries items[], size_t items_length);
+size_t findlong_string (groceries items[], size_t items_length);
 int get_stock (groceries user_items[], groceries selected_items[]);
 void init_stock (groceries items[], size_t items_length);
 int string_compare (char string1[], char string2[]);
-
+checkout shopping (groceries items[], size_t *items_length, int *promo_code);

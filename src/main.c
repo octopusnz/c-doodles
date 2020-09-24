@@ -6,10 +6,22 @@
 
 /* Functions start here */
 
-int main(void) {
+int main (int argc, char *argv[]) {
 
     groceries items[MAX_ITEMS] = {{ {0}, {0}, 0, 0 }};
     size_t items_length = 0;
+    int promo_status = 0;
+    size_t *p_items_length;
+    int *p_promo_status;
+
+    p_items_length = &items_length;
+    p_promo_status = &promo_status;
+
+    if (argc == 2) {
+        if (strcmp(argv[1], "promotion") == 0) {
+             promo_status = 1;
+        }
+    }
 
     strcpy (items[0].name, "Apple");
     items[0].price = 1.99;
@@ -35,6 +47,7 @@ int main(void) {
 
     findlong_string(items, items_length);
     init_stock(items, items_length);
+    shopping (items, p_items_length, p_promo_status);
 
     return 0;
 }
@@ -46,8 +59,8 @@ void init_stock (groceries items[], size_t items_length) {
     size_t selected_items_length = 0;
     size_t user_items_length = 4;
 
-    groceries user_items[MAX_ITEMS] = {{ {0}, {0}, 0, 0 }};
-    groceries selected_items[MAX_ITEMS] = {{ {0}, {0}, 0, 0 }};
+    groceries user_items[MAX_ITEMS] = { {{0}, {0}, 0, 0} };
+    groceries selected_items[MAX_ITEMS] = { {{0}, {0}, 0, 0} };
 
     /* TO-DO: Calculate the length of longest string and use that for offset */
     printf("***************************************************************\n");
@@ -145,7 +158,7 @@ int get_stock (groceries user_items[], groceries selected_items[]) {
            "PromoCode", "Quantity");
     printf("\n");
 
-    for(i=0, count=1; i < user_items_length; i++, count++) {
+    for(i = 0, count = 1; i < user_items_length; i++, count++) {
 
         printf("%-16d", count);
         printf("%-16s", user_items[i].name);
@@ -215,4 +228,29 @@ int get_stock (groceries user_items[], groceries selected_items[]) {
    }
 
    return selected_items_length;
+}
+
+checkout shopping (groceries items[], size_t *items_length, int *promo_code) {
+
+    checkout my_cart = { {{ {0}, {0}, 0, 0 }}, 0, 0 };
+
+    float total_price = 0.00;
+    size_t i = 0;
+
+    for (i = 0; i < *items_length; i++) {
+        total_price += items[i].price;
+    }
+
+     for (i = 0; i < *items_length; i++) {
+        my_cart.basket[i] = items[i];
+    }
+
+    my_cart.total_price = total_price;
+    my_cart.store_promo_status = *promo_code;
+
+    printf("Total: %.2f\n", my_cart.total_price);
+    printf("Promo Status: %d\n", my_cart.store_promo_status);
+
+    return my_cart;
+
 }

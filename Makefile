@@ -27,13 +27,13 @@ VAL_DEPS := $(VAL_OBJS:.o=.d)
 INC_DIRS := $(shell find $(SRC_DIRS) -type d)
 INC_FLAGS := $(addprefix -I,$(INC_DIRS))
 
-CFLAGS ?= -O0 -g -fsanitize=address -march=native -pedantic -pipe -std=c18\
-          -Wall -Wextra -Wduplicated-cond -Wduplicated-branches -Wshadow\
-          -Wstrict-prototypes
+CFLAGS ?= -save-temps=obj -O0 -g -fsanitize=address -march=native -pedantic\
+					-std=c18 -Wall -Wextra -Wduplicated-cond -Wduplicated-branches\
+					-Wshadow -Wstrict-prototypes
 CPPFLAGS ?= $(INC_FLAGS) -MMD -MP
 LDFLAGS ?= -fsanitize=address
-VAL_CFLAGS ?= -O0 -g -march=native -pedantic -pipe -std=c89 -Wall -Wextra\
-              -Wshadow -Wstrict-prototypes
+VAL_CFLAGS ?= -O0 -g -march=native -pedantic -save-temps=obj -std=c89 -Wall\
+							-Wextra -Wshadow -Wstrict-prototypes
 VAL_LDFLAGS ?=
 
 .PHONY: all cdoodles clean valgrind
