@@ -3,7 +3,7 @@
 # Latest Clang: /usr/local/clang_10.0.1/bin/clang-10
 # Debian 10 default GCC: /usr/bin/gcc
 # Debian 10 default Clang: /usr/bin/clang
-# Debain 10 default CC (after many symlinks): /usr/bin/gcc
+# Debian 10 default CC (after many symlinks): /usr/bin/gcc
 
 SHELL := /usr/bin/bash
 .SHELLFLAGS := -o errexit -o nounset -o pipefail -c
@@ -28,12 +28,12 @@ INC_DIRS := $(shell find $(SRC_DIRS) -type d)
 INC_FLAGS := $(addprefix -I,$(INC_DIRS))
 
 CFLAGS ?= -save-temps=obj -O0 -g -fsanitize=address -march=native -pedantic\
-					-std=c18 -Wall -Wextra -Wduplicated-cond -Wduplicated-branches\
-					-Wshadow -Wstrict-prototypes
+          -std=c18 -Wall -Wextra -Wduplicated-cond -Wduplicated-branches\
+          -Wshadow -Wstrict-prototypes
 CPPFLAGS ?= $(INC_FLAGS) -MMD -MP
 LDFLAGS ?= -fsanitize=address
 VAL_CFLAGS ?= -O0 -g -march=native -pedantic -save-temps=obj -std=c89 -Wall\
-							-Wextra -Wshadow -Wstrict-prototypes
+              -Wextra -Wshadow -Wstrict-prototypes
 VAL_LDFLAGS ?=
 
 .PHONY: all cdoodles clean valgrind
