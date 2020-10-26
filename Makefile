@@ -1,6 +1,6 @@
 # Compiler locations:
 # Latest GCC: /usr/local/gcc-10.2.0/bin/gcc-10.2
-# Latest Clang: /usr/local/clang_10.0.1/bin/clang-10
+# Latest Clang: /usr/local/clang_11/bin/clang-10
 # Debian 10 default GCC: /usr/bin/gcc
 # Debian 10 default Clang: /usr/bin/clang
 # Debian 10 default CC (after many symlinks): /usr/bin/gcc
@@ -9,7 +9,7 @@ SHELL := /usr/bin/bash
 .SHELLFLAGS := -o errexit -o nounset -o pipefail -c
 
 CC := /usr/local/gcc-10.2.0/bin/gcc-10.2
-VAL_CC := /usr/local/clang_10.0.1/bin/clang-10
+VAL_CC := /usr/local/clang_11.0.0/bin/clang-11
 MKDIR_P ?= mkdir -p
 
 TARGET_EXEC := a.out
