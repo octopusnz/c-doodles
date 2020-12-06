@@ -11,3 +11,21 @@ jobs:
           make
         env:
           CC: gcc
+  build-linux-clang:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: compile
+        run: |
+          make
+        env:
+          CC: clang
+  build-macos:
+    runs-on: macOS-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: compile
+        run: |
+          make
+        env:
+          CC: clang
