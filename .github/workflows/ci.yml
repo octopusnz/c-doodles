@@ -1,12 +1,31 @@
 name: CI
 on: [push, pull_request]
+
 jobs:
-  build:
+  build-linux-gcc:
     runs-on: ubuntu-latest
     steps:
-	- uses: actions/checkout@v2
-    	- name: make
-     run: |
-     	   make
-     env:
-	 CC: gcc
+      - uses: actions/checkout@v2
+      - name: compile
+        run: |
+          make
+        env:
+          CC: gcc
+  build-linux-clang:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: compile
+        run: |
+          make
+        env:
+          CC: clang
+  build-macos:
+    runs-on: macOS-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: compile
+        run: |
+          make
+        env:
+          CC: clang
