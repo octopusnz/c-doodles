@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "eight_utils.h"
+#include "./headers/eight_utils.h"
 
 /* Functions start here */
 

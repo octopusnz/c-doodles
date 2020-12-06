@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "eight_utils.h"
+#include "./headers/eight_utils.h"
 
 int string_compare (char string1[], char string2[]) {
 
@@ -28,4 +28,3 @@ size_t findlong_string (groceries items[], size_t items_length) {
     }
     return longest;
 }
-

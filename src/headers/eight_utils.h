@@ -3,7 +3,7 @@
 */
 
 /* Global definitions and constants live here */
-
+#include <stddef.h>
 #define MAX_ITEMS 10
 
 /* Global structs live here */
