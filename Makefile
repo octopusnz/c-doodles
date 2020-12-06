@@ -1,4 +1,4 @@
-CFLAGS=-pedantic -std=c18 -Wall -Wextra -Wduplicated-cond -Wduplicated-branches -Wshadow -Wstrict-prototypes
+CFLAGS=-pedantic -std=c17 -Wall -Wextra -Wduplicated-cond -Wduplicated-branches -Wshadow -Wstrict-prototypes
 SRC_DIRS:= ./src
 SOURCES:=  $(wildcard ./src/*.c) $(wildcard ./src/headers/*.h)
 
