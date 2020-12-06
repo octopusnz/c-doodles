@@ -29,3 +29,13 @@ jobs:
           make
         env:
           CC: clang
+  build-windows-msvc:
+      runs-on: windows-latest
+      steps:
+        - uses: actions/checkout@v2
+        # this runs vcvarsall for us, so we get the MSVC toolchain in PATH.
+        - uses: seanmiddleditch/gha-setup-vsdevenv@master
+        - name: compile
+          shell: cmd
+          run: |
+            ./build_msvc.bat
