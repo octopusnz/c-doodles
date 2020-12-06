@@ -3,4 +3,4 @@ SRC_DIRS:= ./src
 SOURCES:=  $(wildcard ./src/*.c) $(wildcard ./src/headers/*.h)
 
 c_doodles: $(SOURCES)
-	$(CC) $(CFLAGS) -o c_doodles $(SOURCES)
+	$(CC) $(CFLAGS) $(SOURCES)

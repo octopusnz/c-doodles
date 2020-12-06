@@ -12,9 +12,9 @@
 .Trash
 .ruby-version
 *.d
+*.gch
 *.lock
 *.o
 *.out
 *.sublime-project
 *.sublime-workspace
-c_doodles
