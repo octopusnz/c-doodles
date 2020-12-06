@@ -24,22 +24,22 @@ int main (int argc, char *argv[]) {
     }
 
     strcpy (items[0].name, "Apple");
-    items[0].price = 1.99;
+    items[0].price = 1.99f;
     strcpy (items[0].promo_code, "abc123");
     items[0].stock_level = 4;
 
     strcpy (items[1].name, "Banana");
-    items[1].price = 4.99;
+    items[1].price = 4.99f;
     strcpy (items[1].promo_code, "abc123");
     items[1].stock_level = 5;
 
     strcpy (items[2].name, "Pear");
-    items[2].price = 2.99;
+    items[2].price = 2.99f;
     strcpy (items[2].promo_code, "def456");
     items[2].stock_level = 6;
 
     strcpy (items[3].name, "Peach");
-    items[3].price = 9.99;
+    items[3].price = 9.99f;
     strcpy (items[3].promo_code, "def456");
     items[3].stock_level = 7;
 
@@ -124,22 +124,22 @@ int get_stock (groceries user_items[], groceries selected_items[]) {
     int error_counter = 0;
 
     strcpy (user_items[0].name, "Chocolate");
-    user_items[0].price = 3.99;
+    user_items[0].price = 3.99f;
     strcpy (user_items[0].promo_code, "zzz244");
     user_items[0].stock_level = 4;
 
     strcpy (user_items[1].name, "Hot Chocolate");
-    user_items[1].price = 4.99;
+    user_items[1].price = 4.99f;
     strcpy (user_items[1].promo_code, "zzz244");
     user_items[1].stock_level = 5;
 
     strcpy (user_items[2].name, "Bubbly Water");
-    user_items[2].price = 2.99;
+    user_items[2].price = 2.99f;
     strcpy (user_items[2].promo_code, "def456");
     user_items[2].stock_level = 6;
 
     strcpy (user_items[3].name, "Ginger Ale");
-    user_items[3].price = 9.99;
+    user_items[3].price = 9.99f;
     strcpy (user_items[3].promo_code, "abc123");
     user_items[3].stock_level = 7;
 
