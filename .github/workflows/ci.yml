@@ -20,7 +20,7 @@ jobs:
           make c_doodles_clang
         env:
           CC: clang
-  build-macos:
+  build-macos-clang:
     runs-on: macOS-latest
     steps:
       - uses: actions/checkout@v2
