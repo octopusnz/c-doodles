@@ -4,6 +4,7 @@
 /build/
 /coverage/
 /doc/
+/local_build/
 /pkg/
 /spec/reports/
 /spec/examples.txt
