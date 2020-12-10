@@ -44,5 +44,5 @@ jobs:
       steps:
         - uses: actions/checkout@master
         - uses: codecov/codecov-action@v1
-	    with:
-	      file: /coverage/code-cov.xml
+	  with:
+	    file: /coverage/code-cov.xml
