@@ -39,7 +39,7 @@ jobs:
           shell: cmd
           run: |
             ./build_msvc.bat
-   run-code-coverage:
+  run-code-coverage:
 	runs-on: ubuntu-latest
 	steps:
 	  - uses: actions/checkout@master
