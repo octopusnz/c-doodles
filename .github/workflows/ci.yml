@@ -49,5 +49,3 @@ jobs:
            prepare: pkg install -y gmake
          run: |
            gmake c_doodles_clang
-	 env:
-	   CC: clang
