@@ -40,16 +40,16 @@ jobs:
           run: |
             ./build_msvc.bat
   build-freebsd-clang:
-     runs-on: macos-latest
-     name: FreeBSD Clang
-     steps:
-       - uses: actions/checkout@v2
-       - name: FreeBSD
-       	 id: compile
-       	 uses: vmactions/freebsd-vm@v0.0.9
-         with:
-           usesh: true
-           prepare: pkg install -y gmake
-           run: |
+    runs-on: macos-latest
+    name: FreeBSD Clang
+    steps:
+      - uses: actions/checkout@v2
+      - name: FreeBSD
+       	id: compile
+       	uses: vmactions/freebsd-vm@v0.0.9
+        with:
+          usesh: true
+          prepare: pkg install -y gmake
+          run: |
 	     freebsd-version
 	     gmake c_doodles_clang
