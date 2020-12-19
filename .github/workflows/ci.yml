@@ -45,7 +45,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: FreeBSD
-       	id: compile
+       	id: build
        	uses: vmactions/freebsd-vm@v0.0.9
         with:
           usesh: true
