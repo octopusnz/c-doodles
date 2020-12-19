@@ -51,5 +51,5 @@ jobs:
           usesh: true
           prepare: pkg install -y pkgconf gmake
           run: |
-	    freebsd-version
+	    #freebsd-version
 	    gmake c_doodles_clang
