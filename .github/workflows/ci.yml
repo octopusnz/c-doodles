@@ -52,4 +52,4 @@ jobs:
           prepare: pkg install -y pkgconf gmake
           run: |
 	     freebsd-version
-	     gmake c_doodles_clang
+	     gmake
