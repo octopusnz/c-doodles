@@ -41,7 +41,7 @@ jobs:
             ./build_msvc.bat
   build-freebsd-clang:
     runs-on: macos-latest
-    name: FreeBSD Clang
+    name: build-freebsd-clang
     steps:
       - uses: actions/checkout@v2
       - name: FreeBSD
