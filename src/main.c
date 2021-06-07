@@ -8,7 +8,7 @@
 
 int main (int argc, char *argv[]) {
 
-  groceries items[MAX_ITEMS] = {{ 0, 0, {0}, {0} }};
+    groceries items[MAX_ITEMS] = {{ 0, {0}, 0, {0} }};
     size_t items_length = 0;
     int promo_status = 0;
     size_t *p_items_length;
@@ -59,8 +59,8 @@ void init_stock (groceries items[], size_t items_length) {
     size_t selected_items_length = 0;
     size_t user_items_length = 4;
 
-    groceries user_items[MAX_ITEMS] = {{0, 0, {0}, {0} }};
-    groceries selected_items[MAX_ITEMS] = {{0, 0, {0}, {0} }};
+    groceries user_items[MAX_ITEMS] = {{0, {0}, 0, {0} }};
+    groceries selected_items[MAX_ITEMS] = {{0, {0}, 0, {0} }};
 
     /* TO-DO: Calculate the length of longest string and use that for offset */
     printf("***************************************************************\n");
@@ -232,7 +232,7 @@ int get_stock (groceries user_items[], groceries selected_items[]) {
 
 checkout shopping (groceries items[], size_t *items_length, int *promo_code) {
 
-  checkout my_cart = { {{ 0, 0, {0}, {0} }}, 0, 0 };
+    checkout my_cart = { {{ 0, {0}, 0, {0} }}, 0, 0 };
 
     float total_price = 0.00;
     size_t i = 0;

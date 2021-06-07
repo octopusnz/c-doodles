@@ -1,5 +1,5 @@
 /* File: eight_utils.h
-	 Location: ./src/headers/
+         Location: ./src/headers/
 */
 
 /* Global definitions and constants live here */
@@ -11,18 +11,18 @@
 typedef struct stock
 {
     int stock_level;
+    char name[20];
     float price;
     char promo_code[7];
-    char name[20];
 
 } groceries;
 
 typedef struct cart
 {
 
-	groceries basket[MAX_ITEMS];
-	int store_promo_status;
-	float total_price;
+        groceries basket[MAX_ITEMS];
+        int store_promo_status;
+        float total_price;
 
 } checkout;
 
