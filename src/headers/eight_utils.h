@@ -12,8 +12,8 @@ typedef struct stock
 {
     int stock_level;
     char name[20];
-    float price;
     char promo_code[7];
+    float price;
 
 } groceries;
 
