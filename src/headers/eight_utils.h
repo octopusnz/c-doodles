@@ -10,19 +10,18 @@
 
 typedef struct stock
 {
-    int stock_level;
     char name[20];
     char promo_code[7];
+    int stock_level;
     float price;
 
 } groceries;
 
 typedef struct cart
 {
-
-        groceries basket[MAX_ITEMS];
-        int store_promo_status;
-        float total_price;
+    groceries basket[MAX_ITEMS];
+    int store_promo_status;
+    float total_price;
 
 } checkout;
 
